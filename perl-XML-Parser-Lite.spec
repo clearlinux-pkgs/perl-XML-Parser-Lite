@@ -4,7 +4,7 @@
 #
 Name     : perl-XML-Parser-Lite
 Version  : 0.722
-Release  : 3
+Release  : 4
 URL      : https://cpan.metacpan.org/authors/id/P/PH/PHRED/XML-Parser-Lite-0.722.tar.gz
 Source0  : https://cpan.metacpan.org/authors/id/P/PH/PHRED/XML-Parser-Lite-0.722.tar.gz
 Summary  : 'Lightweight pure-perl XML Parser (based on regexps)'
@@ -22,7 +22,7 @@ use XML::Parser::Lite;
 %package dev
 Summary: dev components for the perl-XML-Parser-Lite package.
 Group: Development
-Provides: perl-XML-Parser-Lite-devel
+Provides: perl-XML-Parser-Lite-devel = %{version}-%{release}
 
 %description dev
 dev components for the perl-XML-Parser-Lite package.
@@ -54,9 +54,9 @@ make TEST_VERBOSE=1 test
 %install
 rm -rf %{buildroot}
 if test -f Makefile.PL; then
-make pure_install PERL_INSTALL_ROOT=%{buildroot}
+make pure_install PERL_INSTALL_ROOT=%{buildroot} INSTALLDIRS=vendor
 else
-./Build install --installdirs=site --destdir=%{buildroot}
+./Build install --installdirs=vendor --destdir=%{buildroot}
 fi
 find %{buildroot} -type f -name .packlist -exec rm -f {} ';'
 find %{buildroot} -depth -type d -exec rmdir {} 2>/dev/null ';'
@@ -65,7 +65,7 @@ find %{buildroot} -type f -name '*.bs' -empty -exec rm -f {} ';'
 
 %files
 %defattr(-,root,root,-)
-/usr/lib/perl5/site_perl/5.26.1/XML/Parser/Lite.pm
+/usr/lib/perl5/vendor_perl/5.26.1/XML/Parser/Lite.pm
 
 %files dev
 %defattr(-,root,root,-)
