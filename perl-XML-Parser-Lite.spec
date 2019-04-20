@@ -4,7 +4,7 @@
 #
 Name     : perl-XML-Parser-Lite
 Version  : 0.722
-Release  : 10
+Release  : 11
 URL      : https://cpan.metacpan.org/authors/id/P/PH/PHRED/XML-Parser-Lite-0.722.tar.gz
 Source0  : https://cpan.metacpan.org/authors/id/P/PH/PHRED/XML-Parser-Lite-0.722.tar.gz
 Summary  : 'Lightweight pure-perl XML Parser (based on regexps)'
