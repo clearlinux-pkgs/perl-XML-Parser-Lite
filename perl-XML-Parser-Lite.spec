@@ -4,12 +4,13 @@
 #
 Name     : perl-XML-Parser-Lite
 Version  : 0.722
-Release  : 12
+Release  : 13
 URL      : https://cpan.metacpan.org/authors/id/P/PH/PHRED/XML-Parser-Lite-0.722.tar.gz
 Source0  : https://cpan.metacpan.org/authors/id/P/PH/PHRED/XML-Parser-Lite-0.722.tar.gz
 Summary  : 'Lightweight pure-perl XML Parser (based on regexps)'
 Group    : Development/Tools
 License  : Artistic-1.0-Perl
+Requires: perl-XML-Parser-Lite-perl = %{version}-%{release}
 BuildRequires : buildreq-cpan
 BuildRequires : perl(Test::Requires)
 
@@ -23,19 +24,30 @@ use XML::Parser::Lite;
 Summary: dev components for the perl-XML-Parser-Lite package.
 Group: Development
 Provides: perl-XML-Parser-Lite-devel = %{version}-%{release}
+Requires: perl-XML-Parser-Lite = %{version}-%{release}
 
 %description dev
 dev components for the perl-XML-Parser-Lite package.
 
 
+%package perl
+Summary: perl components for the perl-XML-Parser-Lite package.
+Group: Default
+Requires: perl-XML-Parser-Lite = %{version}-%{release}
+
+%description perl
+perl components for the perl-XML-Parser-Lite package.
+
+
 %prep
 %setup -q -n XML-Parser-Lite-0.722
+cd %{_builddir}/XML-Parser-Lite-0.722
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
-export LANG=C
+export LANG=C.UTF-8
 if test -f Makefile.PL; then
 %{__perl} Makefile.PL
 make  %{?_smp_mflags}
@@ -45,7 +57,7 @@ else
 fi
 
 %check
-export LANG=C
+export LANG=C.UTF-8
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
@@ -65,8 +77,11 @@ find %{buildroot} -type f -name '*.bs' -empty -exec rm -f {} ';'
 
 %files
 %defattr(-,root,root,-)
-/usr/lib/perl5/vendor_perl/5.28.2/XML/Parser/Lite.pm
 
 %files dev
 %defattr(-,root,root,-)
 /usr/share/man/man3/XML::Parser::Lite.3
+
+%files perl
+%defattr(-,root,root,-)
+/usr/lib/perl5/vendor_perl/5.30.1/XML/Parser/Lite.pm
