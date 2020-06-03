@@ -4,7 +4,7 @@
 #
 Name     : perl-XML-Parser-Lite
 Version  : 0.722
-Release  : 14
+Release  : 15
 URL      : https://cpan.metacpan.org/authors/id/P/PH/PHRED/XML-Parser-Lite-0.722.tar.gz
 Source0  : https://cpan.metacpan.org/authors/id/P/PH/PHRED/XML-Parser-Lite-0.722.tar.gz
 Summary  : 'Lightweight pure-perl XML Parser (based on regexps)'
@@ -84,4 +84,4 @@ find %{buildroot} -type f -name '*.bs' -empty -exec rm -f {} ';'
 
 %files perl
 %defattr(-,root,root,-)
-/usr/lib/perl5/vendor_perl/5.30.2/XML/Parser/Lite.pm
+/usr/lib/perl5/vendor_perl/5.30.3/XML/Parser/Lite.pm
